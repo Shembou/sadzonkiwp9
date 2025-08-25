@@ -3,6 +3,6 @@
         "./sadzonkiwp9-theme"
     ],
     "plugins": [
-        "./sections"
+        "./blocks"
     ]
 }

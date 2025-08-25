@@ -12,6 +12,13 @@
 	"settings": {
 		"appearanceTools": true,
 		"color": {
+			"gradients": [
+				{
+					"name": "Button border gradient",
+					"slug": "button-border-gradient",
+					"gradient": "linear-gradient(#CFEBD0, #CFEBD0) padding-box, linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;"
+				}
+			],
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
@@ -203,12 +210,24 @@
 			"core/button": {
 				"variations": {
 					"outline": {
-						"css": ".wp-block-button__link:not(.has-background) {border-width:0px 0px 1px 0px; border-image: linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) 1; color: #388E3C}",
+						"css": ".wp-block-button__link:not(.has-background) {border-width:0px 0px 1px 0px; border-image: linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) 1; color: #388E3C;}",
 						"spacing": {
 							"padding": {
 								"left": "4px",
 								"right": "4px"
 							}
+						}
+					},
+					"fill": {
+						"css": ".wp-block-button__link {border:1px solid transparent; color: #388E3C; border-radius:16px;}",
+						"spacing": {
+							"padding": {
+								"left": "16px",
+								"right": "16px"
+							}
+						},
+						"color": {
+							"gradient": "var(--wp--preset--gradient--button-border-gradient)"
 						}
 					}
 				}
@@ -2180,8 +2199,11 @@
 					},
 					"text-display": {
 						"typography": {
-							"fontSize": "clamp(2.2rem, 2.2rem + ((1vw - 0.2rem) * 1.333), 3.5rem)",
+							"fontSize": "clamp(0.8rem, 0.8rem + ((1vw - 0.2rem) * 1), 1rem)",
 							"lineHeight": "1.2"
+						},
+						"color": {
+							"text": "#388E3C"
 						}
 					},
 					"text-subtitle": {
