@@ -1,0 +1,8 @@
+{
+    "themes": [
+        "./sadzonkiwp9-theme"
+    ],
+    "plugins": [
+        "./sections"
+    ]
+}
