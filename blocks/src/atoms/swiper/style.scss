@@ -1,0 +1,27 @@
+div.wp-block-atoms-swiper {
+	.swiper-container {
+		width: 100%;
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+
+	figure {
+		background-position: center;
+		background-size: cover;
+		width: auto;
+		height: 300px;
+		transition: filter 2s ease;
+	}
+
+	figure img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: 8px;
+		filter: grayscale(0%);
+	}
+
+	figure:not(.swiper-slide-active) img {
+		filter: grayscale(100%);
+	}
+}

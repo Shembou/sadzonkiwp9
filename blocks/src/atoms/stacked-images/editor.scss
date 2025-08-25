@@ -1,0 +1,54 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+div.wp-block-atoms-stacked-images {
+	img {
+		position: relative !important;
+		right: unset !important;
+		left: unset !important;
+		top: unset !important;
+		bottom: unset !important;
+		max-width: 500px !important;
+		width: 100% !important;
+		height: 100px !important;
+	}
+
+	figure {
+		width: auto !important;
+		height: 100px !important;
+		position: relative !important;
+		left: unset !important;
+		right: unset !important;
+		top: unset !important;
+		bottom: unset !important;
+		padding: unset !important;
+		border: unset !important;
+		background: unset !important;
+		backdrop-filter: unset !important;
+	}
+
+	figure:nth-child(5n + 3) {
+		&::before {
+			content: "Pierwsza ikona"
+		}
+
+		img {
+			width: 100px !important;
+			height: 100px !important;
+		}
+	}
+
+	figure:nth-child(5n + 4) {
+		&::before {
+			content: "Druga ikona"
+		}
+
+		img {
+			width: 100px !important;
+			height: 100px !important;
+		}
+	}
+}
