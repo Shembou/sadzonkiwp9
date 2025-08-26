@@ -1,0 +1,52 @@
+div.wp-block-components-three-cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 24px;
+	position: relative;
+	align-items: center;
+	width: 100%;
+
+	svg {
+		position: absolute;
+		bottom: 106px;
+		z-index: -1;
+		overflow: unset;
+	}
+
+	.wp-block-atoms-card:nth-child(3n + 1) {
+		margin-bottom: 128px;
+	}
+
+	.wp-block-atoms-card:nth-child(3n + 2) {
+		margin-bottom: 64px;
+	}
+
+	@media (width < 876px) {
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+
+		.wp-block-atoms-card:nth-child(3n+3) {
+			grid-column: span 2;
+		}
+
+		.wp-block-atoms-card {
+			margin: unset !important;
+		}
+
+		figure {
+			display: grid;
+			place-items: center;
+		}
+
+		img {
+			max-width: 200px;
+		}
+	}
+
+	@media (width < 499px) {
+		grid-template-columns: 1fr;
+		.wp-block-atoms-card:nth-child(3n+3) {
+			grid-column: unset;
+		}
+	}
+}
