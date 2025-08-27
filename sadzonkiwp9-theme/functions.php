@@ -156,3 +156,53 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 		}
 	}
 endif;
+
+require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+
+function theme_register_required_plugins() {
+    $plugins = array(
+
+        // array(
+        //     'name'               => 'LiteSpeed Cache', // Plugin name
+        //     'slug'               => 'litespeed-cache', // Plugin slug (the plugin directory name)
+        //     'required'           => true, // Set to true to make this plugin required
+        //     'version'            => '', // Specify version if you need a specific one
+        //     'force_activation'   => false, // Set to false to avoid forced activation
+        //     'force_deactivation' => false, // Set to false to avoid forced deactivation
+        //     'external_url'       => '', // External URL if the plugin is hosted outside the WordPress.org repository
+        // ),
+
+		// array(
+		// 	'name'               => 'The SEO Framework', // Plugin name
+		// 	'slug'               => 'autodescription', // Plugin slug (the plugin directory name)
+		// 	'required'           => true, // Set to true to make this plugin required
+		// 	'version'            => '', // Specify version if you need a specific one
+		// 	'force_activation'   => false, // Set to false to avoid forced activation
+		// 	'force_deactivation' => false, // Set to false to avoid forced deactivation
+		// 	'external_url'       => '', // External URL if the plugin is hosted outside the WordPress.org repository
+		// ),
+
+		// array(
+		// 	'name'               => 'Contact Form 7', // Plugin name
+		// 	'slug'               => 'contact-form-7', // Plugin slug (the plugin directory name)
+		// 	'required'           => true, // Set to true to make this plugin required
+		// 	'version'            => '', // Specify version if you need a specific one
+		// 	'force_activation'   => false, // Set to false to avoid forced activation
+		// 	'force_deactivation' => false, // Set to false to avoid forced deactivation
+		// 	'external_url'       => '', // External URL if the plugin is hosted outside the WordPress.org repository
+		// ),
+		array(
+			'name'               => 'Safe SVG',
+			'slug'               => 'safe-svg',
+			'required'           => true,
+			'version'            => '',
+			'force_activation'   => false,
+			'force_deactivation' => false,
+			'external_url'       => '',
+		),
+    );
+
+    tgmpa($plugins);
+}
+
+add_action('tgmpa_register', 'theme_register_required_plugins');
