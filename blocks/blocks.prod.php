@@ -92,3 +92,13 @@ function register_external_scripts() {
     register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'register_external_scripts' );
+
+function enqueue_plugin_styles() {
+	wp_enqueue_style(
+		'plugin-styles',
+		plugins_url( 'assets/styles/block-styles.css', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/block-styles.css' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_plugin_styles' );

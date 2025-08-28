@@ -10,6 +10,8 @@ div.wp-block-atoms-stacked-images {
 	container-name: stacked-images;
 	max-width: 400px;
 	padding: 50px;
+	width: 100%;
+	justify-self: flex-end;
 
 	.wrapper {
 		position: relative;
@@ -70,7 +72,8 @@ div.wp-block-atoms-stacked-images {
 		border-radius: 8px;
 	}
 
-	@container stacked-images (width <399px) {
+	@media(max-width: 530px) {
+
 		figure:nth-child(5n + 2) {
 			margin: unset !important;
 
@@ -91,6 +94,10 @@ div.wp-block-atoms-stacked-images {
 			top: -20px;
 		}
 
+		figure:nth-child(5n+4) {
+			left: -20px;
+		}
+
 		figure:nth-child(n + 3) {
 			padding: 8px;
 
@@ -100,7 +107,7 @@ div.wp-block-atoms-stacked-images {
 		}
 	}
 
-	@media(width<500px) {
-		padding: 20px;
+	@media (max-width: 950px) {
+		justify-self: center;
 	}
 }

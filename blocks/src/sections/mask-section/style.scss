@@ -1,0 +1,28 @@
+section.wp-block-sections-mask-section {
+
+	max-width: unset !important;
+	margin-right: unset !important;
+	margin-left: -32px !important;
+	display: grid;
+	place-items: center;
+	width: calc(100% + 64px);
+
+	position: relative;
+	background-color: #DAF2DB;
+
+	background-image: url("/assets/images/Mask.jpg");
+	background-position: center;
+	background-size: contain;
+	background-repeat: repeat;
+	background-blend-mode: soft-light;
+
+	mask-image: radial-gradient(ellipse 150% 99% at 50% 1%, black 99%, rgb(0, 0, 0) 99%, transparent 100%);
+
+	.wp-block-button__link a {
+		background: #FFFFFF !important;
+	}
+
+	header {
+		max-width: 500px;
+	}
+}

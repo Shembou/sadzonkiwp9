@@ -91,3 +91,27 @@ function register_external_scripts() {
     register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'register_external_scripts' );
+
+function enqueue_plugin_styles() {
+	wp_enqueue_style(
+		'plugin-styles',
+		plugins_url( 'assets/styles/block-styles.css', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/block-styles.css' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_plugin_styles' );
+
+function register_plugin_patterns() {
+	if ( function_exists( 'register_block_pattern' )) {
+		register_block_pattern(
+			'blocks/homepage-about',
+            array(
+                'title'       => __( 'homepage-about', 'blocks' ),
+                'description' => __( 'About section inside homepage for this plugin', 'blocks' ),
+                'content'     => file_get_contents( plugin_dir_path( __FILE__ ) . 'patterns/homepage-about.html' ),
+            )
+		);
+	}
+}
+add_action( 'init', 'register_plugin_patterns');
