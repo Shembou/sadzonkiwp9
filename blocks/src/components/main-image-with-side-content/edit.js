@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -31,30 +31,42 @@ import './editor.scss';
  */
 export default function Edit() {
 
+	function generate_side_column(headings, paragraphs) {
+		const data = headings.map((_, index) => {
+			return [
+				['core/image', {}],
+				['core/heading', { placeholder: headings[index] }],
+				['core/paragraph', { placeholder: paragraphs[index] }]
+			]
+		}).flat();
+
+		return ['core/column', {}, data];
+	}
+
 	const TEMPLATE = [
 		['core/columns', {}, [
+			generate_side_column(
+				["2 000 000", "20 lat"],
+				["wyprodukowanych sadzonek rocznie", "tradycji i doświadczenia w szkółkarstwie"]
+			),
 			['core/column', {}, [
-				['core/image', {}],
-				["core/heading", { placeholder: "Odbiór i dostawa roślin" }],
-				["core/paragraph", { placeholder: "Odbiór osobisty to nasz priorytet – uwielbiamy rozmowy o roślinach! Jeśli to nie jest możliwe, dostarczamy rośliny na teren całego kraju i za granicę." }],
-				["core/buttons", {}, [
-					['core/button', { placeholder: "O dostawach" }]
-				]],
+				['core/image', {}]
 			]],
-			['core/column', {}, [
-				['core/image', {}],
-				["core/heading", { placeholder: "Jak złożyć zamówienie" }],
-				["core/paragraph", { placeholder: "Zapytania i zamówienia przyjmujemy przez formularz na stronie lub mailowo. Po otrzymaniu zapytania potwierdzamy dostępność i ustalamy szczegóły odbioru." }],
-				["core/buttons", {}, [
-					['core/button', { placeholder: "Wyślij zapytanie" }]
-				]],
-			]],
+			generate_side_column(
+				["500+", "Ponad 400"],
+				["stałych klientów w Polsce i za granicą", "odmian roślin w sprzedaży"]
+			)
 		]]
-	]
+	];
 
 	const blockProps = useBlockProps();
-	const { children, ...innerBlockProps } = useInnerBlocksProps(blockProps, { template: TEMPLATE })
-
+	const { children, ...innerBlockProps } = useInnerBlocksProps(
+		blockProps,
+		{
+			template: TEMPLATE,
+			templateLock: 'all',
+		}
+	)
 	return (
 		<div {...innerBlockProps}>
 			{children}

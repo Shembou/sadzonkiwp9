@@ -34,6 +34,7 @@ function create_blocks_on_init() {
 	 */
 	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
 		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/manifests/atoms-blocks-manifest.php' );
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/manifests/common-blocks-manifest.php' );
 		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/manifests/components-blocks-manifest.php' );
 		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/manifests/sections-blocks-manifest.php' );
 		return;
@@ -47,6 +48,7 @@ function create_blocks_on_init() {
 	 */
 	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
 		wp_register_block_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/manifests/atoms-blocks-manifest.php' );
+		wp_register_block_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/manifests/common-blocks-manifest.php' );
 		wp_register_block_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/manifests/components-blocks-manifest.php' );
 		wp_register_block_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/manifests-/sections-blocks-manifest.php' );
 	}
@@ -55,6 +57,12 @@ function create_blocks_on_init() {
 	 *
 	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
 	 */
+
+	$common_manifest_data = require __DIR__ . '/manifests/common-blocks-manifest.php';
+	foreach ( array_keys( $common_manifest_data ) as $block_type ) {
+		register_block_type( __DIR__ . "/build/common/{$block_type}" );
+	}
+
 	$atoms_manifest_data = require __DIR__ . '/manifests/atoms-blocks-manifest.php';
 	foreach ( array_keys( $atoms_manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/atoms/{$block_type}" );
@@ -72,7 +80,7 @@ function create_blocks_on_init() {
 }
 add_action( 'init', 'create_blocks_on_init' );
 
-function register_external_scripts() {
+function register_swiper_scripts() {
     wp_register_style(
         'swiper-css',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
@@ -90,7 +98,20 @@ function register_external_scripts() {
 
     register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'register_external_scripts' );
+add_action( 'init', 'register_swiper_scripts' );
+
+function register_GSAP_scripts() {
+	wp_register_script(
+		'gsap',
+		"https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js",
+		array(),
+		'3.13.0',
+		true
+	);
+	
+	register_block_type(__DIR__ . '/build');
+}
+add_action('init', 'register_GSAP_scripts');
 
 function enqueue_plugin_styles() {
 	wp_enqueue_style(
@@ -115,3 +136,10 @@ function register_plugin_patterns() {
 	}
 }
 add_action( 'init', 'register_plugin_patterns');
+
+add_action('phpmailer_init', function($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'mailhog';
+    $phpmailer->Port = 1025;
+    $phpmailer->SMTPAutoTLS = false;
+});

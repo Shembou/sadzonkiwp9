@@ -1,2 +1,19 @@
 div.wp-block-components-separated-cards {
+    --columns-gap: clamp(40px, 8vw, 160px);
+
+    .wp-block-columns {
+        gap: var(--columns-gap)
+    }
+
+    .wp-block-column:first-child {
+        border-right: 1px solid #CFEBD0;
+        padding-right: var(--columns-gap);
+
+        @media (max-width: 781px) {
+            border-right: unset;
+            padding-right: unset;
+            border-bottom: 1px solid #CFEBD0;
+            padding-bottom: var(--columns-gap);
+        }
+    }
 }

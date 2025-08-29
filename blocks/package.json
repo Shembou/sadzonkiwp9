@@ -16,12 +16,15 @@
 		"blocks-manifest:atoms": "wp-scripts build-blocks-manifest --input=src/atoms --output=manifests/atoms-blocks-manifest.php",
 		"blocks-manifest:sections": "wp-scripts build-blocks-manifest --input=src/sections --output=manifests/sections-blocks-manifest.php",
 		"blocks-manifest:components": "wp-scripts build-blocks-manifest --input=src/components --output=manifests/components-blocks-manifest.php",
-		"build-blocks": "npm run blocks-manifest:atoms && npm run blocks-manifest:sections && npm run blocks-manifest:components",
+		"blocks-manifest:common": "wp-scripts build-blocks-manifest --input=src/common --output=manifests/common-blocks-manifest.php",
+		"build-blocks": "npm run blocks-manifest:atoms && npm run blocks-manifest:sections && npm run blocks-manifest:components && npm run blocks-manifest:common",
 
 		"blocks-manifest:atoms-prod": "wp-scripts build-blocks-manifest --input=src/atoms --output=build/atoms-blocks-manifest.php",
+		"blocks-manifest:common-prod": "wp-scripts build-blocks-manifest --input=src/common --output=build/common-blocks-manifest.php",
 		"blocks-manifest:sections-prod": "wp-scripts build-blocks-manifest --input=src/sections --output=build/sections-blocks-manifest.php",
 		"blocks-manifest:components-prod": "wp-scripts build-blocks-manifest --input=src/components --output=build/components-blocks-manifest.php",
-		"build-blocks:prod": "npm run blocks-manifest:atoms-prod && npm run blocks-manifest:sections-prod && npm run blocks-manifest:components-prod"
+		"build-blocks:prod": "npm run blocks-manifest:atoms-prod && npm run blocks-manifest:sections-prod && npm run blocks-manifest:components-prod && npm run blocks-manifest:common-prod"
+		
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.22.0"

@@ -1,0 +1,17 @@
+form.wp-block-common-reactive-form {
+	overflow: hidden;
+	position: relative;
+	background: #F8F8F8;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		width: 273px;
+		height: 273px;
+		position: absolute;
+		right: 35px;
+		bottom: -49.526px;
+		opacity: 0.1;
+	}
+}

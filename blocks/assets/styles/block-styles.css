@@ -22,4 +22,14 @@
 .icon-bg>svg {
   flex-shrink: 0;
   aspect-ratio: 1/1;
+  place-self: center !important;
+}
+
+.icon-bg {
+  display: grid !important;
+  place-items: center;
+}
+
+.max-w-645 {
+  max-width: 645px !important;
 }
