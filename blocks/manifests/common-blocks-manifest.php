@@ -25,6 +25,10 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'file:./view.js',
+			'gsap'
 		)
 	)
 );

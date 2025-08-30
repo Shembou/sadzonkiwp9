@@ -33,3 +33,9 @@
 .max-w-645 {
   max-width: 645px !important;
 }
+
+input:focus,
+textarea:focus {
+  outline: -1px;
+  outline-color: #388E3C;
+}

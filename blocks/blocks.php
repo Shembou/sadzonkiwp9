@@ -24,6 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
+
+include_once 'src/common/reactive-form/api/contact.php';
+
 function create_blocks_on_init() {
 	/**
 	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
@@ -142,4 +145,8 @@ add_action('phpmailer_init', function($phpmailer) {
     $phpmailer->Host = 'mailhog';
     $phpmailer->Port = 1025;
     $phpmailer->SMTPAutoTLS = false;
+});
+
+add_action('rest_api_init', function() {
+	\api\contact::register_contact_route();
 });
