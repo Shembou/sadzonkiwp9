@@ -1,10 +1,95 @@
 let isNextStep = false;
 let formData = {};
+/**
+ * 
+ * @param {HTMLFormElement} form 
+ */
 
-function getTextareaInputData() {
+function appendClassToInputs(form) {
+    /** @type {HTMLInputElement[] | null} */
+    const inputs = form.querySelectorAll('input,textarea');
+    if (inputs == null) return
+
+    inputs.forEach(input => {
+        input.addEventListener("focus", () => {
+            input.classList.add("wasFocused", "focused")
+        })
+        input.addEventListener("blur", () => {
+            input.classList.remove("focused")
+        })
+    });
+}
+
+/**
+ * @returns boolean
+ */
+function checkTextAreaInput() {
+    /** @type {HTMLTextAreaElement | null} */
     const textarea = document.querySelector('textarea[name="text"]');
-    if (!textarea || textarea.value.trim() === "") return false;
+    if (!textarea) return false;
+
+
+    if (!textarea.checkValidity()) {
+        textarea.classList.add("invalid")
+        textarea.reportValidity();
+        return false;
+    }
+    if (textarea.classList.contains("invalid")) textarea.classList.remove("invalid")
     formData.text = textarea.value.trim();
+    return true;
+}
+/**
+ * Validate an input/textarea by its name attribute and set a custom error.
+ * Usage: checkInputValidation('name', 'Please enter your name')
+ * @param {string} inputName
+ * @param {string} message
+ * @param {string | RegExp} pattern - Regex pattern for input validation
+ * @returns {boolean}
+ */
+function checkInputValidation(inputName, message, pattern) {
+    /** @type {HTMLInputElement | null} */
+    const el = document.querySelector(`[name="${inputName}"]`);
+    if (!el) return false;
+
+    el.classList.remove('invalid');
+
+    if (pattern instanceof RegExp) {
+        el.pattern = pattern.source;
+    } else if (typeof pattern === "string") {
+        el.pattern = pattern;
+    }
+
+    el.setCustomValidity("");
+    if (!el.checkValidity()) {
+        el.setCustomValidity(message);
+        el.classList.add("invalid");
+        el.reportValidity();
+        return false;
+    }
+
+    formData[inputName] = el.value.trim();
+    return true;
+}
+/**
+ * @param {string} message
+ * @returns {boolean}
+ * 
+*/
+function checkCheckboxValidation(message) {
+    /** @type {HTMLInputElement | null} */
+    const checkbox = document.querySelector(`[name="privacy-policy"]`);
+    if (!checkbox) return false;
+
+    checkbox.classList.remove('invalid');
+
+    checkbox.setCustomValidity("");
+    if (!checkbox.checked) {
+        checkbox.setCustomValidity(message)
+        checkbox.reportValidity();
+        return false;
+    }
+
+    formData["privacy-policy"] = checkbox.checked;
     return true;
 }
 
@@ -57,8 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
 
-            if (!getTextareaInputData()) {
-                alert("Please enter text first.");
+            if (!checkTextAreaInput()) {
                 return;
             }
 
@@ -69,23 +153,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.querySelector("form.wp-block-common-reactive-form");
     if (form) {
+
+        appendClassToInputs(form)
+
         form.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            const nameInput = document.querySelector('input[name="name"]');
-            const mailInput = document.querySelector('input[name="mail"]');
-            const privacyPolicy = document.querySelector('input[name="privacy-policy"]');
+            if (!checkInputValidation("mail", "Proszę podać poprawny adres e-mail", "[^@\\s]+@[^@\\s]+\\.[^@\\s]+")) return
+            if (!checkInputValidation("name", "Proszę podać poprawnę imię", "^[\p{L}][\p{L}\s\.\-&']{1,99}$")) return
+            if (!checkCheckboxValidation("Do wysłania wiadomości wymagane jest potwierdzenie polityki prywatności")) return
 
-            if (!nameInput.value.trim() || !mailInput.value.trim() || !privacyPolicy.checked) {
-                alert("Please fill out all required fields and accept privacy policy.");
-                return;
-            }
-
-            formData.name = nameInput.value.trim();
-            formData.mail = mailInput.value.trim();
-            formData["privacy-policy"] = privacyPolicy.checked;
-
-            console.log("Final form data:", formData);
+            console.log(formData)
 
             fetch("/wp-json/blocks/v1/contact", {
                 method: "POST",
