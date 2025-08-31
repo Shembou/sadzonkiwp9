@@ -40,7 +40,7 @@ export default function Edit() {
 			<div className='first-step'>
 				<label for="text">Sam zadaj nam pytanie</label>
 				<textarea required minLength={2} id="text" name='text' rows={5} />
-				<button id="next-step">Przejdź dalej</button >
+				<button id="next-step" type='button'>Przejdź dalej</button >
 			</div>
 			<div className='second-step'>
 				<label for="name">Imię i nazwisko / nazwa firmy</label>

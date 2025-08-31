@@ -14,9 +14,9 @@ export default function save() {
                     id="text"
                     name="text"
                     rows="5"
-                    title="Please enter at least 4 characters."
+                    title="Proszę wpisać conajmniej 4 litery"
                 ></textarea>
-                <button id="next-step">Przejdź dalej</button>
+                <button id="next-step" type='button'>Przejdź dalej</button>
             </div>
 
             <div class="second-step">
@@ -26,7 +26,7 @@ export default function save() {
                     required
                     name="name"
                     id="name"
-                    title="Please enter at least 20 characters (letters, numbers, spaces, and - . , ' allowed)."
+                    title="Proszę podać imię i nazwisko lub nazwę firmy"
                 />
 
                 <label for="mail">Adres e-mail</label>
@@ -35,7 +35,7 @@ export default function save() {
                     required
                     name="mail"
                     id="mail"
-                    title="Please enter a valid email address."
+                    title="Proszę podać poprawny adres email"
                 />
 
                 <div class="checkbox-wrapper">

@@ -43,21 +43,15 @@ function checkTextAreaInput() {
  * Usage: checkInputValidation('name', 'Please enter your name')
  * @param {string} inputName
  * @param {string} message
- * @param {string | RegExp} pattern - Regex pattern for input validation
  * @returns {boolean}
  */
-function checkInputValidation(inputName, message, pattern) {
+function checkInputValidation(inputName, message) {
     /** @type {HTMLInputElement | null} */
     const el = document.querySelector(`[name="${inputName}"]`);
     if (!el) return false;
 
     el.classList.remove('invalid');
 
-    if (pattern instanceof RegExp) {
-        el.pattern = pattern.source;
-    } else if (typeof pattern === "string") {
-        el.pattern = pattern;
-    }
 
     el.setCustomValidity("");
     if (!el.checkValidity()) {
@@ -148,6 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             isNextStep = true;
             animateSteps(firstStep, secondStep, 1);
+            /**@type {HTMLInputElement | null} */
+            const inputToFocus = secondStep.querySelector("input[name='name']")
+            if (!inputToFocus) return;
+            inputToFocus.focus()
         });
     }
 
@@ -156,11 +154,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         appendClassToInputs(form)
 
+        // form.addEventListener("keydown", (e) => {
+        //     if (e.key === "Enter" && e.target.tagName.toLowerCase() !== "textarea") {
+        //         e.preventDefault();
+        //     }
+        // });
+
+
         form.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            if (!checkInputValidation("mail", "Proszę podać poprawny adres e-mail", "[^@\\s]+@[^@\\s]+\\.[^@\\s]+")) return
-            if (!checkInputValidation("name", "Proszę podać poprawnę imię", "^[\p{L}][\p{L}\s\.\-&']{1,99}$")) return
+            if (!checkInputValidation("mail", "Proszę podać poprawny adres e-mail")) return
+            if (!checkInputValidation("name", "Proszę podać poprawnę imię")) return
             if (!checkCheckboxValidation("Do wysłania wiadomości wymagane jest potwierdzenie polityki prywatności")) return
 
             console.log(formData)

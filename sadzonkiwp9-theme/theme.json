@@ -2471,8 +2471,8 @@
 			"button": {
 				":focus": {
 					"outline": {
-						"color": "var(--wp--preset--color--accent-4)",
-						"offset": "2px"
+						"color": "#388E3C",
+						"offset": "4px"
 					}
 				},
 				":hover": {
@@ -2551,6 +2551,12 @@
 				":hover": {
 					"typography": {
 						"textDecoration": "none"
+					}
+				},
+				":focus": {
+					"outline": {
+						"color": "#388E3C",
+						"offset": "4px"
 					}
 				},
 				"color": {
