@@ -23,6 +23,7 @@ export default function save() {
 	return (
 		<div {...innerBlockProps}>
 			{children}
+			<div className='line' />
 		</div>
 	);
 }

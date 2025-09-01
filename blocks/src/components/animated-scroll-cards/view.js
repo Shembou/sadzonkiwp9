@@ -1,16 +1,34 @@
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".wp-block-atoms-animated-scroll-card::after", {
-  // animate the mask-size to "reveal" border
-  maskSize: "100% 100%",
-  WebkitMaskSize: "100% 100%", // Safari
-  duration: 2,
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".wp-block-atoms-animated-scroll-card",
-    start: "top center",
-    end: "bottom center",
-    scrub: false,
-    toggleActions: "restart none restart none" // replays when you scroll up again
-  }
-});
+document.addEventListener("DOMContentLoaded", () => {
+
+  
+
+  gsap.utils.toArray(".wp-block-atoms-animated-scroll-card").forEach(card => {
+
+    gsap.to(card, {
+      "--border-gradient": "linear-gradient(87deg, #FFFFFF 0%, #388E3C 50%, #EEEEEE 100%)",
+      ease: "slow(0.7,0.7,false)",
+      scrollTrigger: {
+        trigger: card, // individual card
+        start: "top center",
+        end: "bottom center",
+        scrub: true
+      }
+    });
+
+    let line = card.querySelector(".line");
+    if (line) {
+      gsap.to(line, {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card, // same card
+          start: "top center",
+          end: "bottom center",
+          scrub: true
+        }
+      });
+    }
+  });
+})
