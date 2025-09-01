@@ -1,6 +1,32 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'animated-scroll-card' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'atoms/animated-scroll-card',
+		'version' => '0.1.0',
+		'title' => 'Animated scroll card',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'textdomain' => 'atoms',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		)
+	),
 	'break' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -55,6 +81,32 @@ return array(
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'textdomain' => 'atoms',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		)
+	),
+	'faq-card' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'atoms/faq-card',
+		'version' => '0.1.0',
+		'title' => 'FAQ card',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
 		),
 		'textdomain' => 'atoms',
 		'editorScript' => 'file:./index.js',

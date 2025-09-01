@@ -1,0 +1,49 @@
+details.wp-block-atoms-faq-card {
+	display: grid;
+	gap: 16px;
+	padding: 8px 16px;
+	align-items: flex-start;
+	border-radius: 8px;
+	background: #F8F8F8;
+
+	summary {
+		list-style: none;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+
+		color: #323232;
+		font-family: inherit;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 150%;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-icon {
+		transition: transform 0.3s ease;
+	}
+
+	.faq-icon-vertical {
+		transition: transform 0.3s ease;
+		transform-origin: center;
+		transform: rotate(0deg);
+	}
+
+	&[open] .faq-icon-vertical {
+		transform: rotate(90deg);
+	}
+
+	summary:focus {
+		outline: none;
+	}
+
+	&:focus-within {
+		outline: 1px solid #388E3C;
+		outline-offset: 0;
+	}
+}

@@ -111,6 +111,14 @@ function register_GSAP_scripts() {
 		'3.13.0',
 		true
 	);
+
+	wp_register_script(
+		'gsapScrollTrigger',
+		"https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js",
+		array(),
+		'3.13.0',
+		true
+	);
 	
 	register_block_type(__DIR__ . '/build');
 }

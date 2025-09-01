@@ -1,0 +1,26 @@
+div.wp-block-atoms-animated-scroll-card {
+  position: relative;
+  border-radius: 8px;
+  padding: 32px;
+  background: #F8F8F8; // solid inside
+
+  // fake border layer
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px; // border thickness
+    background: linear-gradient(87deg, #FFFFFF 0%, #388E3C 50%, #EEEEEE 100%);
+
+    // mask allows us to reveal gradually
+    -webkit-mask: linear-gradient(to bottom, #000 0% 0%, transparent 0% 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 0%;
+    mask: linear-gradient(to bottom, #000 0% 0%, transparent 0% 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 0%;
+
+    pointer-events: none; // don’t block clicks
+  }
+}

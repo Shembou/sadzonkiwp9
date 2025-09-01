@@ -5,6 +5,24 @@
   }
 }
 
+@media (max-width:650px) {
+  .wrap-at-650 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.max-w-427 {
+  max-width: 427px;
+}
+
+.place-center {
+  display: grid;
+  place-self: center;
+  place-content: center;
+}
+
+
 .button-white>a {
   background: #FFFFFF !important;
 }
@@ -37,4 +55,21 @@
 input:focus,
 textarea:focus {
   outline-color: #388E3C;
+}
+
+.icon-bg-small {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 500px;
+  background: rgba(56, 142, 60, 0.25);
+  backdrop-filter: blur(2px);
+}
+
+.icon-bg-small>img,
+.icon-bg-small>svg {
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  place-self: center !important;
 }

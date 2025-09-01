@@ -1,10 +1,12 @@
 form.wp-block-common-reactive-form {
 	display: flex;
 	flex-wrap: nowrap;
+	width: 100%;
 
 	.first-step {
 		display: grid;
 		gap: 8px;
+		width: 100%;
 
 		#input-label {
 			color: #373737;
@@ -40,10 +42,13 @@ form.wp-block-common-reactive-form {
 		&.wasFocused:not(.focused):invalid {
 			outline: 1px solid rgb(245, 62, 48);
 		}
+
+		@media (max-width: 500px) {
+			width: calc(100% - 32px);
+		}
 	}
 
 	button {
-		padding: 0px 16px;
 		display: flex;
 		height: 36px;
 		padding: 0 16px;
@@ -51,7 +56,6 @@ form.wp-block-common-reactive-form {
 		align-items: center;
 		gap: 8px;
 		flex-shrink: 0;
-		border-radius: 16px;
 		border: 1px solid transparent;
 		border-radius: 16px;
 		background:
@@ -62,6 +66,7 @@ form.wp-block-common-reactive-form {
 		color: #388E3C;
 		font-size: 16px;
 		font-weight: 500;
+		width: fit-content;
 	}
 
 	label {

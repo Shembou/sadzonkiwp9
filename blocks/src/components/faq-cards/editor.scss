@@ -1,0 +1,10 @@
+div.wp-block-components-main-image-with-side-content {
+    .wp-block-columns {
+        .wp-block-column:nth-child(2) {
+            figure {
+                display: grid;
+                place-items: center;
+            }
+        }
+    }
+}

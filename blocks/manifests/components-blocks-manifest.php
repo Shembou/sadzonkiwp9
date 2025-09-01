@@ -1,6 +1,37 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'animated-scroll-cards' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'components/animated-scroll-cards',
+		'version' => '0.1.0',
+		'title' => 'Animated scroll cards',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'textdomain' => 'components',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'file:./view.js',
+			'gsap',
+			'gsapScrollTrigger'
+		)
+	),
 	'card-with-background-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -52,6 +83,33 @@ return array(
 		'style' => array(
 			'file:./style-index.css'
 		)
+	),
+	'faq-cards' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'components/faq-cards',
+		'version' => '0.1.0',
+		'title' => 'FAQ cards',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'textdomain' => 'components',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		),
+		'viewScript' => 'file:./view.js'
 	),
 	'main-image-with-side-content' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
