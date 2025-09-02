@@ -1,3 +1,5 @@
+import Form from '../../classes/Form'
+
 let isNextStep = false;
 let formData = {};
 /**
@@ -154,13 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         appendClassToInputs(form)
 
-        // form.addEventListener("keydown", (e) => {
-        //     if (e.key === "Enter" && e.target.tagName.toLowerCase() !== "textarea") {
-        //         e.preventDefault();
-        //     }
-        // });
-
-
         form.addEventListener("submit", (e) => {
             e.preventDefault();
 
@@ -168,23 +163,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!checkInputValidation("name", "Proszę podać poprawnę imię")) return
             if (!checkCheckboxValidation("Do wysłania wiadomości wymagane jest potwierdzenie polityki prywatności")) return
 
-            console.log(formData)
+            const form = new Form();
 
-            fetch("/wp-json/blocks/v1/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            })
-                .then(res => res.text()) // <- see raw output
-                .then(text => {
-                    console.log("Raw response:", text);
-                    try {
-                        const data = JSON.parse(text);
-                        console.log("Parsed JSON:", data);
-                    } catch (e) {
-                        console.error("Not JSON:", e);
-                    }
-                });
+            form.submitReactiveForm(formData).then(result => {
+                if (result.success) {
+                    alert("Form submitted successfully!");
+                } else {
+                    alert("Error: " + result.message);
+                }
+            });
         });
     }
 });

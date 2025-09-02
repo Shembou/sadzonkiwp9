@@ -25,7 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
 
-include_once 'src/common/reactive-form/api/contact.php';
+include_once 'src/api/contact.php';
+include_once 'patterns/patterns.php';
 
 function create_blocks_on_init() {
 	/**
@@ -134,19 +135,10 @@ function enqueue_plugin_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_plugin_styles' );
 
-function register_plugin_patterns() {
-	if ( function_exists( 'register_block_pattern' )) {
-		register_block_pattern(
-			'blocks/homepage-about',
-            array(
-                'title'       => __( 'homepage-about', 'blocks' ),
-                'description' => __( 'About section inside homepage for this plugin', 'blocks' ),
-                'content'     => file_get_contents( plugin_dir_path( __FILE__ ) . 'patterns/homepage-about.html' ),
-            )
-		);
-	}
-}
-add_action( 'init', 'register_plugin_patterns');
+
+add_action( 'init', function() {
+	\patterns\patterns::register_plugin_patterns();
+});
 
 add_action('phpmailer_init', function($phpmailer) {
     $phpmailer->isSMTP();
@@ -156,5 +148,5 @@ add_action('phpmailer_init', function($phpmailer) {
 });
 
 add_action('rest_api_init', function() {
-	\api\contact::register_contact_route();
+	\api\contact::register_contact_routes();
 });

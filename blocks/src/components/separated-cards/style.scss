@@ -1,19 +1,30 @@
 div.wp-block-components-separated-cards {
+    container-type: inline-size;
+    container-name: separated-cards;
+    width: 100%;
     --columns-gap: clamp(40px, 8vw, 160px);
 
     .wp-block-columns {
-        gap: var(--columns-gap)
+        gap: var(--columns-gap);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .wp-block-column:first-child {
         border-right: 1px solid #CFEBD0;
-        padding-right: var(--columns-gap);
+        padding-right: calc(var(--columns-gap) / 2);
+    }
 
-        @media (max-width: 781px) {
+    @container (max-width: 780px) {
+        .wp-block-column:first-child {
             border-right: unset;
             padding-right: unset;
             border-bottom: 1px solid #CFEBD0;
             padding-bottom: var(--columns-gap);
+        }
+
+        .wp-block-columns {
+            grid-template-columns: 1fr;
         }
     }
 }

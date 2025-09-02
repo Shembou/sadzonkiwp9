@@ -1,6 +1,6 @@
 @media (max-width: 950px) {
   .break-at-950 {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr !important;
   }
 }
@@ -9,6 +9,22 @@
   .wrap-at-650 {
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+.faq-section {
+  grid-template-columns: 1fr 0.1fr 1fr;
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: 1.5fr 0.1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 1150px) {
+  .contact-form {
+    grid-template-columns: 1fr 0.1fr 1fr;
   }
 }
 
@@ -72,4 +88,13 @@ textarea:focus {
   flex-shrink: 0;
   aspect-ratio: 1/1;
   place-self: center !important;
+}
+
+.max-w-728 {
+  max-width: 728px !important;
+}
+
+.flex-shrink-0 {
+  display: flex;
+  flex-shrink: 0;
 }
