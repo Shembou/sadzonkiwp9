@@ -2153,9 +2153,6 @@
 					}
 				}
 			},
-			"core/list": {
-				"css": "& li{margin-top: 0.5rem;}"
-			},
 			"core/navigation": {
 				"elements": {
 					"link": {

@@ -1,0 +1,61 @@
+section.wp-block-sections-custom-post-template {
+	display: flex;
+
+	.toc {
+		min-width: 379px;
+
+		ul>li {
+			list-style: none;
+
+			.arrow {
+				border: 2px solid #388E3C;
+				border-radius: 4px;
+				transition: rotate 1s ease;
+			}
+
+			&.in-view .arrow{
+				rotate: 90deg
+			}
+		}
+	}
+
+	.blog-wrapper {
+		ul>li {
+			position: relative;
+			padding-left: 28px;
+			margin-top: 0.5rem;
+			list-style: none;
+		}
+
+		ul>li::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 18px;
+			height: 19px;
+			background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" fill="none" viewBox="0 0 18 19"><g clip-path="url(%23clip0_6574_5511)"><path d="M8.25 7.73035L10.5 9.98035L8.25 12.2303" stroke="%23388E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.25 9.98035C2.25 10.8668 2.42459 11.7445 2.76381 12.5635C3.10303 13.3824 3.60023 14.1265 4.22703 14.7533C4.85382 15.3801 5.59794 15.8773 6.41689 16.2165C7.23583 16.5558 8.11358 16.7303 9 16.7303C9.88642 16.7303 10.7642 16.5558 11.5831 16.2165C12.4021 15.8773 13.1462 15.3801 13.773 14.7533C14.3998 14.1265 14.897 13.3824 15.2362 12.5635C15.5754 11.7445 15.75 10.8668 15.75 9.98035C15.75 8.19014 15.0388 6.47325 13.773 5.20738C12.5071 3.94151 10.7902 3.23035 9 3.23035C7.20979 3.23035 5.4929 3.94151 4.22703 5.20738C2.96116 6.47325 2.25 8.19014 2.25 9.98035Z" stroke="%23388E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_6574_5511"><rect width="18" height="18" fill="white" transform="translate(0 0.980347)"/></clipPath></defs></svg>') no-repeat center;
+		}
+
+		ol {
+			counter-reset: ol-counter;
+			list-style: none;
+		}
+
+		ol>li {
+			position: relative;
+			margin-top: 0.5rem;
+			counter-increment: ol-counter;
+			padding-left: 0;
+		}
+
+		ol>li::before {
+			content: counter(ol-counter, decimal-leading-zero) ". ";
+			left: 0;
+			font-weight: bold;
+			color: #388e3c;
+			width: 40px;
+			text-align: right;
+		}
+	}
+}
