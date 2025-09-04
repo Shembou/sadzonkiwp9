@@ -1,50 +1,24 @@
-<section>
-    <header <?php echo get_block_wrapper_attributes(); ?> >
+<section <?php echo get_block_wrapper_attributes(); ?>>
+    <header>
         <?php echo $content ?>
     </header>
 
     <?php
     $current_post_id = get_the_ID();
-    $current_post_slug = get_post_field('post_name', $current_post_id);
 
     if (!function_exists('parse_blog_html')) {
         function parse_blog_html($content) {
             if (empty($content)) {
-                return [
-                    'reading_time'   => 0,
-                    'featured_image' => '',
-                    'title'          => '',
-                ];
+                return 1; // default 1 minute if no content
             }
 
-            // Load content into DOMDocument
-            $dom = new DOMDocument();
-            @$dom->loadHTML(
-                mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'),
-                LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
-            );
+            // Strip HTML and count words
+            $word_count = str_word_count( wp_strip_all_tags( $content ) );
 
-            // Create xpath object
-            $xpath = new DOMXPath($dom);
+            // Average reading speed ~200 words/minute
+            $reading_time = ceil($word_count / 200);
 
-            // Extract reading time
-            $reading_time_node = $xpath->query("//span[contains(@class, 'reading-time')]")->item(0);
-            $reading_time_text = $reading_time_node ? $reading_time_node->textContent : '';
-            $reading_time = (int) preg_replace('/[^0-9]/', '', $reading_time_text) ?: 1;
-
-            // Extract featured image
-            $featured_image_node = $xpath->query("//img[contains(@class, 'featured-image')]")->item(0);
-            $featured_image = $featured_image_node ? $featured_image_node->getAttribute('src') : '';
-
-            // Extract title
-            $title_node = $xpath->query("//h1[contains(@class, 'wp-block-heading')]")->item(0);
-            $title = $title_node ? trim($title_node->textContent) : '';
-
-            return [
-                'reading_time'   => $reading_time,
-                'featured_image' => $featured_image,
-                'title'          => $title,
-            ];
+            return $reading_time;
         }
     }
 
@@ -60,32 +34,49 @@
 
     if ($query->have_posts()) :
         while ($query->have_posts()) : $query->the_post();
-            $post_link = get_permalink();
-            $content = get_the_content();
-            $parsed_data = parse_blog_html($content);
+            $post_thumbnail   = get_the_post_thumbnail(get_the_ID(), 'medium');
+            $post_title       = get_the_title();
+            $post_excerpt     = get_the_excerpt();
+            $post_link        = get_permalink();
+            $post_categories  = get_the_category();
+            $content          = get_the_content();
+            $reading_time     = parse_blog_html($content);
             ?>
             <div class="blog-post">
                 <div class="image-wrapper">
-                    <p class="reading-time">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" fill="none" viewBox="0 0 16 17" alt="Bookmark Icon">
-                        <path fill="#324C4D" d="M13 2.344H4.5a2 2 0 0 0-2 2v10.5a.5.5 0 0 0 .5.5h9a.5.5 0 1 0 0-1H3.5a1 1 0 0 1 1-1H13a.5.5 0 0 0 .5-.5v-10a.5.5 0 0 0-.5-.5m-5.5 1h3v4.5l-1.2-.9a.5.5 0 0 0-.6 0l-1.2.9zm5 9h-8a2 2 0 0 0-1 .268V4.344a1 1 0 0 1 1-1h2v5.5a.5.5 0 0 0 .8.4L9 7.97l1.7 1.275a.5.5 0 0 0 .8-.4v-5.5h1z"></path>
-                    </svg>
-                        <?php echo esc_html($parsed_data['reading_time']); ?> min. czytania
-                    </p>
-                    <img src="<?php echo esc_url($parsed_data['featured_image']); ?>" alt="<?php echo esc_attr($parsed_data['title']); ?>" />
+                    <?php echo $post_thumbnail; ?>
+                    <div>
+                        <div class="categories">
+                            <?php
+                            if ( ! empty( $post_categories ) ) {
+                                foreach ( $post_categories as $cat ) {
+                                    echo '<span>' . esc_html( $cat->name ) . '</span>';
+                                }
+                            }
+                            ?>
+                        </div>
+                        <p class="reading-time">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6574_5877)">
+                                <path d="M3.33301 12.543C3.33301 13.7249 3.5658 14.8952 4.01809 15.9871C4.47038 17.079 5.13332 18.0712 5.96905 18.9069C6.80477 19.7427 7.79693 20.4056 8.88886 20.8579C9.98079 21.3102 11.1511 21.543 12.333 21.543C13.5149 21.543 14.6852 21.3102 15.7772 20.8579C16.8691 20.4056 17.8612 19.7427 18.697 18.9069C19.5327 18.0712 20.1956 17.079 20.6479 15.9871C21.1002 14.8952 21.333 13.7249 21.333 12.543C21.333 10.156 20.3848 7.86684 18.697 6.17901C17.0091 4.49118 14.72 3.54297 12.333 3.54297C9.94606 3.54297 7.65687 4.49118 5.96905 6.17901C4.28122 7.86684 3.33301 10.156 3.33301 12.543Z" stroke="#373737" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.333 7.54297V12.543L15.333 15.543" stroke="#373737" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6574_5877">
+                                <rect width="24" height="24" fill="white" transform="translate(0.333008 0.542969)"/>
+                                </clipPath>
+                            </defs>
+                            </svg>
+                            <span><?php echo esc_html($reading_time); ?> min. czytania </span>
+                        </p>
+                    </div>
                 </div>
                 <div class="blog-contents-wrapper">
-                    <div class="wrapper">
-                        <h2><?php echo esc_html($parsed_data['title']); ?></h2>
-                        <a href="<?php echo esc_url($post_link); ?>" class="custom-button">
-                            <span>
-                                Czytaj dalej                             
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" alt="Bookmark Icon">
-                                    <path fill="#F9FDFF" d="M13 1.5H4.5a2 2 0 0 0-2 2V14a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 0-1H3.5a1 1 0 0 1 1-1H13a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5m-5.5 1h3V7l-1.2-.9a.5.5 0 0 0-.6 0L7.5 7zm5 9h-8c-.351 0-.696.092-1 .268V3.5a1 1 0 0 1 1-1h2V8a.5.5 0 0 0 .8.4L9 7.125 10.7 8.4a.5.5 0 0 0 .8-.4V2.5h1z"></path>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
+                    <h2><?php echo esc_html($post_title); ?></h2>
+                    <p><?php echo esc_html($post_excerpt); ?></p>
+                    <a href="<?php echo esc_url($post_link); ?>" class="wp-block-button__link">
+                        Czytaj artykuł
+                    </a>
                 </div>
             </div>
         <?php
