@@ -1,25 +1,19 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "sections/custom-post-template",
+	"name": "atoms/blog-reading-time",
 	"version": "0.1.0",
-	"title": "Custom post template",
+	"title": "Blog reading time",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
-		"html": false,
-		"spacing": {
-			"margin": true,
-			"padding": true
-		}
+		"html": false
 	},
-	"textdomain": "sections",
+	"textdomain": "atoms",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": [
-		"file:./style-index.css"
-	],
-	"viewScript": "file:./view.js"
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
 }

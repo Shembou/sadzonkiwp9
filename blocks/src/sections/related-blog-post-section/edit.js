@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -19,7 +19,7 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
+import "./editor.scss";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -31,27 +31,20 @@ import './editor.scss';
  */
 export default function Edit() {
 
-	const TEMPLATE = [
-		['core/heading', { placeholder: "Tytuł posta" }],
-		['core/paragraph', { placeholder: "Zawartość posta" }]
-	];
+	const blockProps = useBlockProps()
+	const { children, ...innerBlockProps } = useInnerBlocksProps(blockProps)
 
-	const blockProps = useBlockProps();
-	const { children, ...innerBlockProps } = useInnerBlocksProps(
-		blockProps,
-		{
-			template: TEMPLATE,
-		},
-	)
-
-	return <section {...innerBlockProps}>
-		<div className='wrapper'>
-			<div className='toc'>
-				<p>{__('The table of contents will automatically generate', "sections")}</p>
-			</div>
-			<div className='blog-wrapper'>
+	return (
+		<section>
+			<header {...innerBlockProps}>
 				{children}
+			</header>
+			<div>
+				<p>{__("Related posts taken from database", "sections")}</p>
 			</div>
-		</div>
-	</section>
+			<div>
+				<p>{__("Related posts taken from database", "sections")}</p>
+			</div>
+		</section>
+	);
 }

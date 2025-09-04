@@ -1,25 +1,21 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "sections/custom-post-template",
+	"name": "components/post-info",
 	"version": "0.1.0",
-	"title": "Custom post template",
+	"title": "Post information",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
-		"html": false,
-		"spacing": {
-			"margin": true,
-			"padding": true
-		}
+		"html": false
 	},
-	"textdomain": "sections",
+	"textdomain": "components",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": [
 		"file:./style-index.css"
 	],
-	"viewScript": "file:./view.js"
+	"render": "file:./render.php"
 }

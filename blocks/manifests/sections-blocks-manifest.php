@@ -75,7 +75,6 @@ return array(
 		'textdomain' => 'sections',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'render' => 'file:./render.php',
 		'style' => array(
 			'file:./style-index.css'
 		),
@@ -106,5 +105,30 @@ return array(
 		'style' => array(
 			'file:./style-index.css'
 		)
+	),
+	'related-blog-post-section' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'sections/related-blog-post-section',
+		'version' => '0.1.0',
+		'title' => 'Related blog post section',
+		'category' => 'widgets',
+		'icon' => 'post',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'textdomain' => 'sections',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
 	)
 );

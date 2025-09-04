@@ -1,16 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const toc = document.querySelector(".toc");
-    if (!toc) return;
+function generateSafeId(text) {
+    text = text.replace(/[\r\n\t]+/g, " ");
+    text = text.toLowerCase();
+    text = text.replace(/[^a-z0-9]+/g, "-");
+    return text.replace(/^-+|-+$/g, "");
+}
 
-    // Safe ID generator
-    const generateSafeId = (text) => {
-        text = text.replace(/[\r\n\t]+/g, " "); // remove line breaks/tabs
-        text = text.toLowerCase(); // lowercase
-        text = text.replace(/[^a-z0-9]+/g, "-"); // replace non-alphanum with hyphen
-        return text.replace(/^-+|-+$/g, ""); // trim hyphens
-    };
-
-    // 1️⃣ Generate TOC dynamically from headings
+function generateToC(toc) {
     const headings = document.querySelectorAll(".blog-wrapper h1, .blog-wrapper h2, .blog-wrapper h3, .blog-wrapper h4, .blog-wrapper h5, .blog-wrapper h6");
     const ul = document.createElement("ul");
 
@@ -30,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         strong.appendChild(a);
         li.appendChild(strong);
 
-        // Check for following ul/ol (nested list)
         let next = heading.nextElementSibling;
         if (next && (next.tagName === "UL" || next.tagName === "OL")) {
             const nestedUl = document.createElement("ul");
@@ -38,21 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
             Array.from(next.children).forEach((nestedLi) => {
                 if (nestedLi.tagName !== "LI") return;
 
-                // 1️⃣ Determine text for ID
                 let liText = "";
                 const firstChild = nestedLi.firstChild;
 
                 if (firstChild) {
                     if (firstChild.nodeType === Node.TEXT_NODE) {
-                        // direct text node
                         liText = firstChild.textContent.trim();
                     } else if (firstChild.nodeType === Node.ELEMENT_NODE && firstChild.tagName === "STRONG") {
-                        // first child is <strong>
                         liText = firstChild.textContent.trim();
                     }
                 }
 
-                // fallback to entire textContent if nothing found
                 if (!liText) liText = nestedLi.textContent.trim();
 
                 nestedLi.id = generateSafeId(liText);
@@ -75,8 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     toc.appendChild(ul);
+}
 
-    // 2️⃣ Add arrows to TOC list items
+function appendArrowsToBaseList(toc) {
     const liArray = toc.querySelectorAll(".base-li");
     liArray.forEach((element) => {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -96,8 +87,61 @@ document.addEventListener("DOMContentLoaded", () => {
         svg.appendChild(path);
         element.insertAdjacentElement("afterbegin", svg);
     });
+}
 
-    // 3️⃣ IntersectionObserver to highlight TOC links
+function appendReturnSvgToNestedList(toc) {
+    /** @type {HTMLLIElement[] | null} */
+    const nestedLiArray = toc.querySelectorAll(".nested-li");
+    if (!nestedLiArray) return;
+
+    nestedLiArray.forEach((element) => {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "20");
+        svg.setAttribute("height", "21");
+        svg.setAttribute("viewBox", "0 0 20 21");
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("class", "back-arrow");
+
+        const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path1.setAttribute(
+            "d",
+            "M14.0579 5.72203H7.39128C5.09128 5.72203 3.22461 7.58869 3.22461 9.88869C3.22461 12.1887 5.09128 14.0554 7.39128 14.0554H16.5579"
+        );
+        path1.setAttribute("stroke", "#388E3C");
+        path1.setAttribute("stroke-width", "1.5");
+        path1.setAttribute("stroke-miterlimit", "10");
+        path1.setAttribute("stroke-linecap", "round");
+        path1.setAttribute("stroke-linejoin", "round");
+
+        const path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path2.setAttribute("d", "M14.6416 11.972L16.7749 14.1053L14.6416 16.2387");
+        path2.setAttribute("stroke", "#388E3C");
+        path2.setAttribute("stroke-width", "1.5");
+        path2.setAttribute("stroke-linecap", "round");
+        path2.setAttribute("stroke-linejoin", "round");
+
+        svg.appendChild(path1);
+        svg.appendChild(path2);
+
+        element.insertAdjacentElement("afterbegin", svg);
+    });
+}
+
+function applyIntersectionObserverToPostLinks(toc) {
+    const container = document.querySelector("section.wp-block-sections-custom-post-template");
+    if (!container) return;
+
+    const containerWidth = container.offsetWidth;
+    if (containerWidth < 600) {
+        const listItems = toc.querySelectorAll(".base-li");
+        if (!listItems) return;
+        listItems.forEach((listItem) => {
+            listItem.classList.add("in-view")
+        })
+        return
+    }
+
     const observableElements = document.querySelectorAll(".blog-wrapper h1, .blog-wrapper h2, .blog-wrapper h3, .blog-wrapper h4, .blog-wrapper h5, .blog-wrapper h6, .blog-wrapper li");
 
     const observer = new IntersectionObserver(
@@ -109,25 +153,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const tocLink = toc.querySelector(`a[href="#${id}"]`);
                 if (!tocLink) return;
-
+                /** @type {HTMLLIElement | null} */
                 let liAfter = tocLink.parentElement;
+
                 while (liAfter && liAfter.tagName !== "LI") {
                     liAfter = liAfter.parentElement;
                 }
+
                 if (!liAfter) return;
 
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && liAfter.classList.contains("base-li")) {
                     liAfter.classList.add("in-view");
-                } else {
+                } else if (entry.isIntersecting && liAfter.classList.contains("nested-li")) {
+                    liAfter.querySelector("a").tabIndex = 0;
+                } else if (!entry.isIntersecting && liAfter.classList.contains("nested-li")) {
+                    liAfter.querySelector("a").tabIndex = -1;
+                }
+                else {
                     liAfter.classList.remove("in-view");
                 }
             });
         },
         {
             root: null,
-            threshold: 0.3,
+            threshold: 1,
         }
     );
 
     observableElements.forEach((el) => observer.observe(el));
+}
+
+function removeOverflowHiddenFromMain() {
+    const main = document.querySelector("main");
+    if (!main) return;
+    main.style.overflow = "visible"
+}
+
+function enableSmoothScrolling(toc) {
+    const links = toc.querySelectorAll("a[href^='#']");
+    links.forEach(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const targetId = link.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
+
+            targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            history.pushState(null, "", `#${targetId}`);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toc = document.querySelector(".toc");
+    if (!toc) return;
+    generateToC(toc);
+    appendArrowsToBaseList(toc)
+    appendReturnSvgToNestedList(toc)
+    applyIntersectionObserverToPostLinks(toc)
+    removeOverflowHiddenFromMain()
+    enableSmoothScrolling(toc)
 });

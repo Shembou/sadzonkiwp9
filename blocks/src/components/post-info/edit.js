@@ -31,27 +31,14 @@ import './editor.scss';
  */
 export default function Edit() {
 
-	const TEMPLATE = [
-		['core/heading', { placeholder: "Tytuł posta" }],
-		['core/paragraph', { placeholder: "Zawartość posta" }]
-	];
-
 	const blockProps = useBlockProps();
-	const { children, ...innerBlockProps } = useInnerBlocksProps(
-		blockProps,
-		{
-			template: TEMPLATE,
-		},
-	)
-
-	return <section {...innerBlockProps}>
-		<div className='wrapper'>
-			<div className='toc'>
-				<p>{__('The table of contents will automatically generate', "sections")}</p>
-			</div>
-			<div className='blog-wrapper'>
-				{children}
-			</div>
+	const { children, ...innerBlockProps } = useInnerBlocksProps(blockProps, {
+		allowedBlocks: []
+	})
+	return (
+		<div {...innerBlockProps}>
+			<p>{__("Author data and categories attached", "components")}</p>
+			{children}
 		</div>
-	</section>
+	);
 }

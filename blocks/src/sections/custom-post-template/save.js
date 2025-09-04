@@ -8,9 +8,11 @@ export default function save() {
 
     return (
         <section {...innerBlockProps}>
-            <div className='toc' />
-            <div className='blog-wrapper'>
-                {children}
+            <div className='wrapper'>
+                <div className='toc' />
+                <div className='blog-wrapper'>
+                    {children}
+                </div>
             </div>
         </section>
     );
