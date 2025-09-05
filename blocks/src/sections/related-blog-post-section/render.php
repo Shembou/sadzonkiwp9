@@ -1,10 +1,10 @@
 <section <?php echo get_block_wrapper_attributes(); ?>>
-    <header>
-        <?php echo $content ?>
-    </header>
-
+    <div class="wrapper">
+          <?php echo $content ?>
     <?php
     $current_post_id = get_the_ID();
+
+    $categories = wp_get_post_categories($current_post_id);
 
     if (!function_exists('parse_blog_html')) {
         function parse_blog_html($content) {
@@ -26,6 +26,7 @@
         'post_type'      => 'post',
         'posts_per_page' => 2,
         'post__not_in'   => [$current_post_id],
+        'category__in'   => $categories,
         'orderby'        => 'date',
         'order'          => 'DESC',
     ];
@@ -86,4 +87,5 @@
         ?>
         <p>No related articles found.</p>
     <?php endif; ?>
+    </div>
 </section>

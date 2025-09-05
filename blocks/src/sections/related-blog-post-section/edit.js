@@ -35,8 +35,8 @@ export default function Edit() {
 	const { children, ...innerBlockProps } = useInnerBlocksProps(blockProps)
 
 	return (
-		<section>
-			<header {...innerBlockProps}>
+		<section {...innerBlockProps}>
+			<header>
 				{children}
 			</header>
 			<div>

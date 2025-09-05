@@ -150,3 +150,7 @@ add_action('phpmailer_init', function($phpmailer) {
 add_action('rest_api_init', function() {
 	\api\contact::register_contact_routes();
 });
+
+add_filter('woocommerce_card_needs_payment', '__return_false');
+
+add_theme_support( 'woocommerce' );
