@@ -110,6 +110,31 @@ return array(
 			'file:./style-index.css'
 		)
 	),
+	'custom-loginout' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'atoms/custom-loginout',
+		'version' => '0.1.0',
+		'title' => 'Custom loginout',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'atoms',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'file:./view.js'
+		)
+	),
 	'faq-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -201,6 +226,31 @@ return array(
 		'viewScript' => array(
 			'file:./view.js',
 			'swiper-js'
+		)
+	),
+	'text-icon' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'atoms/text-icon',
+		'version' => '0.1.0',
+		'title' => 'Simple text with an icon',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'atoms',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'file:./view.js'
 		)
 	),
 	'thumbs-swiper' => array(

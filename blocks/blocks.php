@@ -132,6 +132,18 @@ function enqueue_plugin_styles() {
 		array(),
 		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/block-styles.css' )
 	);
+	wp_enqueue_style(
+		'header-styles',
+		plugins_url( 'assets/styles/header-styles.css', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/header-styles.css' )
+	);
+	wp_enqueue_style(
+		'footer-styles',
+		plugins_url( 'assets/styles/footer-styles.css', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/footer-styles.css' )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_plugin_styles' );
 
@@ -154,13 +166,3 @@ add_action('rest_api_init', function() {
 add_filter('woocommerce_card_needs_payment', '__return_false');
 
 add_theme_support( 'woocommerce' );
-
-function enqueue_custom_product_collection_script() {
-    wp_enqueue_script(
-        'custom-product-collection',
-        plugins_url( '/src/collection/custom-product-collection.js', __FILE__ ),
-        array( 'wc-blocks-registry' ),
-        10
-    );
-}
-add_action( 'enqueue_block_editor_assets', 'enqueue_custom_product_collection_script' );

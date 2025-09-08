@@ -1,0 +1,16 @@
+footer .footer-border {
+    background-color: #d8f0d9;
+    background-position: center;
+    background-size: contain;
+    background-repeat: repeat;
+    background-blend-mode: soft-light;
+}
+
+footer .wp-block-atoms-break {
+    figure {
+        background: inherit;
+    }
+}
+footer .footer-icon {
+    mix-blend-mode: difference;
+}

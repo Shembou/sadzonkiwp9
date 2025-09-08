@@ -1,0 +1,35 @@
+div.wp-block-atoms-custom-loginout {
+	display: flex;
+	gap: 12px;
+	position: relative;
+	justify-self: end;
+	align-self: center;
+
+	a {
+		color: #000;
+		font-size: 16px;
+	}
+
+	a::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	figure {
+		margin-bottom: unset;
+	}
+
+	&:focus-within {
+		outline-offset: 4px;
+		outline: 2px solid #388E3C;
+
+		a {
+			outline: unset;
+		}
+	}
+}
