@@ -98,3 +98,19 @@ textarea:focus {
   display: flex;
   flex-shrink: 0;
 }
+
+.icon-bg-green {
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#388E3C, #388E3C) padding-box,
+    linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+  width: 36px;
+  height: 36px;
+  border-radius: 500px;
+}
+
+.wp-block-page-list {
+  
+}
