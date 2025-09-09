@@ -12,16 +12,16 @@
 	"settings": {
 		"appearanceTools": true,
 		"color": {
-			"gradients": [
-				{
-					"name": "Button border gradient",
-					"slug": "button-border-gradient",
-					"gradient": "linear-gradient(#CFEBD0, #CFEBD0) padding-box, linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;"
-				}
-			],
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
+			"gradients": [
+				{
+					"gradient": "linear-gradient(#CFEBD0, #CFEBD0) padding-box, linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;",
+					"name": "Button border gradient",
+					"slug": "button-border-gradient"
+				}
+			],
 			"palette": [
 				{
 					"color": "#FFFFFF",
@@ -66,8 +66,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "645px",
-			"wideSize": "1340px"
+			"contentSize": "1400px",
+			"wideSize": "1500px"
 		},
 		"spacing": {
 			"defaultSpacingSizes": false,
@@ -124,32 +124,57 @@
 				{
 					"fontFace": [
 						{
-							"fontFamily": "Manrope",
+							"fontFamily": "\"Cabinet Grotesk\"",
 							"fontStyle": "normal",
-							"fontWeight": "200 800",
-							"src": [
-								"file:./assets/fonts/manrope/Manrope-VariableFont_wght.woff2"
-							]
-						}
-					],
-					"fontFamily": "Manrope, sans-serif",
-					"name": "Manrope",
-					"slug": "manrope"
-				},
-				{
-					"fontFace": [
+							"fontWeight": "100",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Thin.woff2"
+						},
 						{
-							"fontFamily": "\"Fira Code\"",
+							"fontFamily": "\"Cabinet Grotesk\"",
 							"fontStyle": "normal",
-							"fontWeight": "300 700",
-							"src": [
-								"file:./assets/fonts/fira-code/FiraCode-VariableFont_wght.woff2"
-							]
+							"fontWeight": "400",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Regular.woff"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Medium.woff2"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Light.woff2"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "200",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Extralight.woff2"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "800",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Extrabold.woff2"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Bold.woff"
+						},
+						{
+							"fontFamily": "\"Cabinet Grotesk\"",
+							"fontStyle": "normal",
+							"fontWeight": "900",
+							"src": "http://localhost:8888/wp-content/uploads/fonts/CabinetGrotesk-Black.woff2"
 						}
 					],
-					"fontFamily": "\"Fira Code\", monospace",
-					"name": "Fira Code",
-					"slug": "fira-code"
+					"fontFamily": "\"Cabinet Grotesk\"",
+					"name": "Cabinet Grotesk",
+					"slug": "cabinet-grotesk"
 				}
 			],
 			"fontSizes": [
@@ -208,35 +233,35 @@
 				}
 			},
 			"core/button": {
+				"typography": {
+					"fontWeight": "500"
+				},
 				"variations": {
-					"outline": {
-						"css": ".wp-block-button__link:not(.has-background) {border-width:0px 0px 1px 0px; border-image: linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) 1; color: #388E3C;}",
+					"fill": {
+						"color": {
+							"gradient": "var(--wp--preset--gradient--button-border-gradient)"
+						},
+						"css": ".wp-block-button__link {border:1px solid transparent; color: #388E3C; border-radius:16px;}",
 						"spacing": {
 							"padding": {
-								"left": "4px",
-								"right": "4px",
 								"bottom": "8px",
+								"left": "16px",
+								"right": "16px",
 								"top": "8px"
 							}
 						}
 					},
-					"fill": {
-						"css": ".wp-block-button__link {border:1px solid transparent; color: #388E3C; border-radius:16px;}",
+					"outline": {
+						"css": ".wp-block-button__link:not(.has-background) {border-width:0px 0px 1px 0px; border-image: linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) 1; color: #388E3C;}",
 						"spacing": {
 							"padding": {
-								"left": "16px",
-								"right": "16px",
 								"bottom": "8px",
+								"left": "4px",
+								"right": "4px",
 								"top": "8px"
 							}
-						},
-						"color": {
-							"gradient": "var(--wp--preset--gradient--button-border-gradient)"
 						}
 					}
-				},
-				"typography": {
-					"fontWeight": "500"
 				}
 			},
 			"core/buttons": {
@@ -2202,12 +2227,12 @@
 						}
 					},
 					"text-display": {
+						"color": {
+							"text": "#388E3C"
+						},
 						"typography": {
 							"fontSize": "clamp(0.8rem, 0.8rem + ((1vw - 0.2rem) * 1), 1rem)",
 							"lineHeight": "1.2"
-						},
-						"color": {
-							"text": "#388E3C"
 						}
 					},
 					"text-subtitle": {
@@ -2494,28 +2519,35 @@
 					}
 				},
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
 					"fontSize": "var(--wp--preset--font-size--medium)"
 				}
 			},
 			"caption": {
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
 					"fontSize": "var(--wp--preset--font-size--small)",
 					"lineHeight": "1.4"
 				}
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--xx-large)"
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
+					"fontSize": "2.25rem",
+					"fontStyle": "normal",
+					"fontWeight": "700"
 				}
 			},
 			"h2": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-large)"
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
+					"fontSize": "1.5rem"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--large)"
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
+					"fontSize": "1.13rem"
 				}
 			},
 			"h4": {
@@ -2539,38 +2571,46 @@
 			},
 			"heading": {
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
+					"fontStyle": "normal",
 					"fontWeight": "400",
 					"letterSpacing": "-0.1px",
 					"lineHeight": "1.125"
 				}
 			},
 			"link": {
-				":hover": {
-					"typography": {
-						"textDecoration": "none"
-					}
-				},
 				":focus": {
 					"outline": {
 						"color": "#388E3C",
 						"offset": "4px"
 					}
 				},
+				":hover": {
+					"typography": {
+						"textDecoration": "none"
+					}
+				},
 				"color": {
 					"text": "currentColor"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)"
 				}
 			}
 		},
 		"spacing": {
 			"blockGap": "1.2rem",
 			"padding": {
-				"left": "var(--wp--preset--spacing--50)",
-				"right": "var(--wp--preset--spacing--50)"
+				"bottom": "0px",
+				"left": "32px",
+				"right": "32px",
+				"top": "0px"
 			}
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--manrope)",
-			"fontSize": "var(--wp--preset--font-size--large)",
+			"fontFamily": "var(--wp--preset--font-family--cabinet-grotesk)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"fontStyle": "normal",
 			"fontWeight": "300",
 			"letterSpacing": "-0.1px",
 			"lineHeight": "1.4"
