@@ -21,8 +21,8 @@ export default function save() {
 	const { children, ...innerBlockProps } = useInnerBlocksProps.save(blockProps)
 
 	return (
-		<div {...innerBlockProps}>
+		<section {...innerBlockProps}>
 			{children}
-		</div>
+		</section>
 	);
 }

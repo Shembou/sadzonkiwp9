@@ -1,80 +1,118 @@
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a {
-  padding: 8px 12px;
-  background: #FFFFFF !important;
-  border-right: 4px solid #f2f2f2;
-  border-top: 4px solid #f2f2f2;
-  border-bottom: 4px solid #f2f2f2;
-  border-radius: 8px;
+    padding: 8px 12px;
+    background: #FFFFFF !important;
+    border-right: 4px solid #f2f2f2;
+    border-top: 4px solid #f2f2f2;
+    border-bottom: 4px solid #f2f2f2;
+    border-radius: 8px;
+    outline-offset: -2px;
+    position: relative;
+    text-decoration: none;
+    transition:
+        color 0.25s ease-in-out,
+        background 0.25s ease-in-out;
+}
+
+header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    left: 12px;
+    width: calc(100% - 24px);
+    height: 1px;
+    background: linear-gradient(90deg, #388E3C, #B0DDB2);
+    transition: transform 0.25s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a:hover {
+    color: #2e7030;
+    background: #f2f2f2 !important;
+}
+
+header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a:hover::after {
+    transform: scaleX(1);
+}
+
+header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a:focus {
+    color: #276329;
+    background: #f2f2f2 !important;
+}
+
+header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item>a:focus::after {
+    transform: scaleX(1);
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item:first-child {
-  border-top-left-radius: 500px;
-  border-bottom-left-radius: 500px;
-  border-left: 4px solid #f2f2f2;
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+    border-left: 4px solid #f2f2f2;
 
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item:last-child {
-  border-top-right-radius: 500px;
-  border-bottom-right-radius: 500px;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item:first-child>a {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item:last-child>a {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list .wp-block-pages-list__item {
-  background-color: #f2f2f2 !important;
+    background-color: #f2f2f2 !important;
 }
 
 header .wp-block-page-list .wp-block-pages-list__item {
-  color: #000;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 header #modal-1:not(.is-menu-open) .wp-block-page-list {
-  display: flex;
-  gap: 0px !important;
+    display: flex;
+    gap: 0px !important;
 }
 
 @media (max-width: 600px) {
-  header div:has(nav) {
-    order: 1;
-  }
+    header div:has(nav) {
+        order: 1;
+    }
 
 }
 
 header .header-grid {
-  grid-template-columns: 1fr 0.15fr;
+    grid-template-columns: 1fr 0.15fr;
 }
 
 header .header-grid-wrapper {
-  border-bottom: 1px solid #D8F3D8;
-  background: #F4FFF4;
+    border-bottom: 1px solid #D8F3D8;
+    background: #F4FFF4;
 }
 
 @media (max-width: 750px) {
-  header .header-grid {
-    grid-template-columns: 1fr;
-  }
+    header .header-grid {
+        grid-template-columns: 1fr;
+    }
 
-  header .header-grid .wp-block-atoms-custom-loginout {
-    place-self: center !important;
-    place-content: center !important;
-  }
+    header .header-grid .wp-block-atoms-custom-loginout {
+        place-self: center !important;
+        place-content: center !important;
+    }
 
-  header .header-grid .header-grid-row {
-    place-self: center !important;
-    place-content: center !important;
-    row-gap: 8px;
-  }
+    header .header-grid .header-grid-row {
+        place-self: center !important;
+        place-content: center !important;
+        row-gap: 8px;
+    }
 }

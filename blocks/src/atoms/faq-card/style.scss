@@ -5,6 +5,11 @@ details.wp-block-atoms-faq-card {
 	align-items: flex-start;
 	border-radius: 8px;
 	background: #F8F8F8;
+	transition: background-position 0.4s ease-in-out;
+
+	background: linear-gradient(to right, #E6F4EA 50%, #F8F8F8 50%);
+	background-size: 200% 100%;
+	background-position: right bottom;
 
 	summary {
 		list-style: none;
@@ -45,5 +50,10 @@ details.wp-block-atoms-faq-card {
 	&:focus-within {
 		outline: 1px solid #388E3C;
 		outline-offset: 0;
+		background-position: left bottom
+	}
+
+	&:hover {
+		background-position: left bottom;
 	}
 }

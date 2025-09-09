@@ -44,6 +44,7 @@ div.wp-block-atoms-thumbs-swiper {
 	.thumbs-parent-swiper {
 		border-radius: 8px;
 		height: auto;
+		cursor: pointer;
 
 		.swiper-wrapper .swiper-slide {
 			margin-bottom: unset !important;
@@ -62,6 +63,10 @@ div.wp-block-atoms-thumbs-swiper {
 			height: 100%;
 			opacity: 0.4;
 			margin-bottom: 0px !important;
+
+			&:not(.swiper-slide-thumb-active) {
+				cursor: pointer;
+			}
 		}
 
 		.swiper-slide-thumb-active {

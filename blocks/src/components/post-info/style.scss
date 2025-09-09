@@ -19,6 +19,50 @@ div.wp-block-components-post-info {
 			padding: 4px 8px;
 			border-radius: 500px;
 			background: #EDEDED;
+			text-decoration: none;
+			position: relative;
+			border: 1px solid transparent;
+			transition:
+				transform 0.25s ease-in-out,
+				background 0.25s ease-in-out,
+				color 0.25s ease-in-out,
+				border 0.25s ease-in-out;
+
+			&:after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 5px;
+				width: calc(100% - 16px);
+				left: 8px;
+				height: 1px;
+				background: linear-gradient(90deg, #388E3C, #B0DDB2);
+				transition: transform 0.25s ease-in-out;
+				transform: scaleX(0);
+				transform-origin: left;
+			}
+
+			&:hover {
+				color: #2e7030;
+				background:
+					linear-gradient(#c4f3c5, #a5e9a7) padding-box,
+					linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+			}
+
+			&:hover::after {
+				transform: scaleX(1);
+			}
+
+			&:focus {
+				background:
+					linear-gradient(#c4f3c5, #a5e9a7) padding-box,
+					linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+				color: #276329;
+			}
+
+			&:focus::after {
+				transform: scaleX(1);
+			}
 		}
 	}
 
@@ -34,7 +78,7 @@ div.wp-block-components-post-info {
 			object-fit: cover;
 		}
 
-		.wrapper {	
+		.wrapper {
 			display: grid;
 			gap: unset !important;
 

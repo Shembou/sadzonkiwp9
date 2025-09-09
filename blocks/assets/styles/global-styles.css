@@ -1,0 +1,139 @@
+.is-style-text-display {
+    color: #388E3C;
+    font-size: clamp(0.8rem, 0.8rem + ((1vw - 0.2rem) * 1), 1rem);
+    line-height: 1.2;
+}
+
+p>a {
+    position: relative;
+    text-decoration: none;
+    transition: color 0.25s ease-in-out;
+}
+
+p>a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #388E3C, #B0DDB2);
+    transition: transform 0.25s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+p>a:hover {
+    color: #2e7030;
+}
+
+p>a:hover::after {
+    transform: scaleX(1);
+}
+
+p>a:focus {
+    outline: none;
+    color: #276329;
+}
+
+p>a:focus::after {
+    transform: scaleX(1);
+}
+
+.wp-block-button.is-style-fill>a {
+    transition:
+        transform 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.wp-block-button.is-style-fill>a:focus {
+    background:
+        linear-gradient(#cef0cf, #baebbc) padding-box,
+        linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wp-block-button.is-style-fill>a:hover {
+    background:
+        linear-gradient(#cef0cf, #baebbc) padding-box,
+        linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wp-block-button.is-style-fill>a:active {
+    background:
+        linear-gradient(#c4f3c5, #a5e9a7) padding-box,
+        linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+}
+
+.wp-block-button.is-style-outline>a {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    color: #388E3C;
+    background: transparent;
+    padding: 8px 4px;
+    font-weight: 500;
+    transition: color 0.25s ease-in-out;
+    text-decoration: none;
+}
+
+.wp-block-button.is-style-outline>a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #388E3C, #B0DDB2);
+    transition: transform 0.25s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.wp-block-button.is-style-outline>a:hover {
+    color: #2e7030;
+}
+
+.wp-block-button.is-style-outline>a:hover::after {
+    transform: scaleX(1);
+}
+
+.wp-block-button.is-style-outline>a:active {
+    color: #276329;
+}
+
+.wp-block-button.is-style-outline>a:focus {
+    color: #276329;
+}
+
+.wp-block-button.is-style-outline>a:focus::after {
+    transform: scaleX(1);
+}
+
+section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.animate-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section>* {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+section .animate-child {
+    opacity: 1;
+    transform: translateY(0);
+}

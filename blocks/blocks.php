@@ -144,8 +144,25 @@ function enqueue_plugin_styles() {
 		array(),
 		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/footer-styles.css' )
 	);
+	wp_enqueue_style(
+		'plugin-global-styles',
+		plugins_url( 'assets/styles/global-styles.css', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/styles/global-styles.css' )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_plugin_styles' );
+
+function enqueue_scripts() {
+	wp_enqueue_script(
+		'section-observer',
+		plugins_url('scripts/animate-sections.js', __FILE__),
+		array(),
+		'1.0.0'
+	);
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_scripts');
 
 
 add_action( 'init', function() {

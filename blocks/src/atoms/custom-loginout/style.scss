@@ -8,9 +8,38 @@ div.wp-block-atoms-custom-loginout {
 	a {
 		color: #000;
 		font-size: 16px;
+		text-decoration: none;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			width: 100%;
+			height: 1px;
+			background: linear-gradient(90deg, #388E3C, #B0DDB2);
+			transition: transform 0.25s ease-in-out;
+			transform: scaleX(0);
+			transform-origin: left;
+		}
+
+		&:hover {
+			color: #2e7030;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+		&:focus {
+			color: #2e7030;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
 	}
 
-	a::after {
+	a::before {
 		content: "";
 		position: absolute;
 		inset: 0;

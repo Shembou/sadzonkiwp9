@@ -54,8 +54,8 @@ export default function Edit() {
 			template: TEMPLATE
 		})
 	return (
-		<div {...innerBlockProps}>
+		<section {...innerBlockProps}>
 			{children}
-		</div>
+		</section>
 	);
 }

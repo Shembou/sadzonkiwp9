@@ -41,7 +41,7 @@ function createArrowSvg(index) {
 
 document.addEventListener("DOMContentLoaded", () => {
     /** @type {HTMLDivElement} */
-    const enumeratedCardsElement = document.querySelector("div.wp-block-components-enumerated-cards");
+    const enumeratedCardsElement = document.querySelector("section.wp-block-components-enumerated-cards");
     if (!enumeratedCardsElement) return;
 
     const columns = enumeratedCardsElement.querySelectorAll('.wp-block-column');

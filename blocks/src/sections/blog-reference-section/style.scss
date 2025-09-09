@@ -67,6 +67,34 @@ section.wp-block-sections-blog-reference-section {
 					border-radius: 16px;
 					background: var(--wp--preset--gradient--button-border-gradient);
 					padding: 8px 16px;
+					transition:
+						transform 0.2s ease-in-out,
+						box-shadow 0.2s ease-in-out;
+					text-decoration: none;
+
+					&:focus {
+						background:
+							linear-gradient(#cef0cf, #baebbc) padding-box,
+							linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+						transform: translateY(-2px);
+						box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+					}
+
+					&:hover {
+						background:
+							linear-gradient(#cef0cf, #baebbc) padding-box,
+							linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+						transform: translateY(-2px);
+						box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+					}
+
+					&:active {
+						background:
+							linear-gradient(#c4f3c5, #a5e9a7) padding-box,
+							linear-gradient(93deg, #388E3C -11.08%, #B0DDB2 106.87%) border-box;
+						transform: translateY(0);
+						box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+					}
 				}
 			}
 		}
@@ -87,7 +115,7 @@ section.wp-block-sections-blog-reference-section {
 	@container (max-width: 550px) {
 		.blogs-wrapper {
 			grid-template-columns: 1fr;
-			
+
 			.blog-post:nth-child(3) {
 				grid-column: 1;
 				max-width: unset;

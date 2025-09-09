@@ -6,7 +6,7 @@ function generateSafeId(text) {
 }
 
 function generateToC(toc) {
-    const headings = document.querySelectorAll(".blog-wrapper h1, .blog-wrapper h2, .blog-wrapper h3, .blog-wrapper h4, .blog-wrapper h5, .blog-wrapper h6");
+    const headings = document.querySelectorAll(".policy-wrapper h1, .policy-wrapper h2, .policy-wrapper h3, .policy-wrapper h4, .policy-wrapper h5, .policy-wrapper h6");
     const ul = document.createElement("ul");
 
     headings.forEach((heading) => {
@@ -129,7 +129,7 @@ function appendReturnSvgToNestedList(toc) {
 }
 
 function applyIntersectionObserverToPostLinks(toc) {
-    const container = document.querySelector("section.wp-block-sections-custom-post-template");
+    const container = document.querySelector("section.wp-block-sections-privacy-policy-template");
     if (!container) return;
 
     const containerWidth = container.offsetWidth;
@@ -142,7 +142,7 @@ function applyIntersectionObserverToPostLinks(toc) {
         return
     }
 
-    const observableElements = document.querySelectorAll(".blog-wrapper h1, .blog-wrapper h2, .blog-wrapper h3, .blog-wrapper h4, .blog-wrapper h5, .blog-wrapper h6, .blog-wrapper li");
+    const observableElements = document.querySelectorAll(".policy-wrapper h1, .policy-wrapper h2, .policy-wrapper h3, .policy-wrapper h4, .policy-wrapper h5, .policy-wrapper h6, .policy-wrapper li");
 
     const observer = new IntersectionObserver(
         (entries) => {
@@ -209,8 +209,8 @@ function enableSmoothScrolling(toc) {
     });
 }
 
-function observeBlogWrapperChildren() {
-    const blogWrapper = document.querySelector(".blog-wrapper");
+function observePolicyWrapperChildren() {
+    const blogWrapper = document.querySelector(".policy-wrapper");
     if (!blogWrapper) return;
 
     const children = blogWrapper.querySelectorAll(":scope > *");
@@ -240,5 +240,5 @@ document.addEventListener("DOMContentLoaded", () => {
     applyIntersectionObserverToPostLinks(toc)
     removeOverflowHiddenFromMain()
     enableSmoothScrolling(toc)
-    observeBlogWrapperChildren();
+    observePolicyWrapperChildren();
 });

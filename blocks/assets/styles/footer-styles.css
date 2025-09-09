@@ -11,6 +11,46 @@ footer .wp-block-atoms-break {
         background: inherit;
     }
 }
+
 footer .footer-icon {
     mix-blend-mode: difference;
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a {
+    transition: color 0.25s ease-in-out;
+    text-decoration: none;
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #388E3C, #B0DDB2);
+    transition: transform 0.25s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: left;
+    bottom: -2px;
+    left: 0px;
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a:hover {
+    color: #132b14;
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a:hover::after {
+    transform: scaleX(1);
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a:focus {
+    color: #132b14;
+    outline: 2px solid #388E3C;
+}
+
+footer .wp-block-page-list .wp-block-pages-list__item>a:focus::after {
+    transform: scaleX(1);
+}
+
+footer .wp-block-social-link-anchor:focus {
+    outline: 2px solid #388E3C;
 }

@@ -5,16 +5,13 @@
 if ($post) {
     $post_date = get_the_date('d.m.Y', $post);
 
-    // Get raw post content (no filters)
     $content = $post->post_content;
 
-    // Use regex to extract .blog-wrapper content
     $blog_text = '';
     if (preg_match('/<div[^>]*class=["\'][^"\']*blog-wrapper[^"\']*["\'][^>]*>(.*?)<\/div>/is', $content, $matches)) {
         $blog_text = strip_tags($matches[1]);
     }
 
-    // Calculate reading time
     $clean_text = trim($blog_text);
     $word_count = str_word_count($clean_text);
     $reading_time = ceil($word_count / 200);

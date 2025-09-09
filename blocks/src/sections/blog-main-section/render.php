@@ -59,7 +59,7 @@
         }
         ?>
         <form method="get" action="">
-            <div class="toc">
+            <div class="filters">
                 <input
                     type="text"
                     id="search"
@@ -69,7 +69,7 @@
                 >
 
                 <div class="categories">
-                    <h2>Kategorie</h2>
+                    <h2>Kategoria</h2>
                     <div class="categories-wrapper">
                         <?php
                         $all_cats = get_categories();
@@ -128,7 +128,7 @@
 
             <?php if ($query->have_posts()) : ?>
                 <?php while ($query->have_posts()) : $query->the_post(); 
-                    $post_thumbnail  = get_the_post_thumbnail(get_the_ID(), 'medium');
+                    $post_thumbnail  = get_the_post_thumbnail(get_the_ID(), 'post-thumbnail');
                     $post_title      = get_the_title();
                     $post_excerpt    = get_the_excerpt();
                     $post_link       = get_permalink();
