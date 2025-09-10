@@ -5,9 +5,7 @@
  * Version:           0.1.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
- * Author:            The WordPress Contributors
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:            https://github.com/Shembou
  * Text Domain:       blocks
  *
  * @package Blocks
@@ -24,10 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
-
-include_once 'src/api/contact.php';
-include_once 'patterns/patterns.php';
-
 function create_blocks_on_init() {
 	/**
 	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
@@ -37,10 +31,10 @@ function create_blocks_on_init() {
 	 * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
 	 */
 	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
-		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/manifests/atoms-blocks-manifest.php' );
-		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/manifests/common-blocks-manifest.php' );
-		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/manifests/components-blocks-manifest.php' );
-		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/manifests/sections-blocks-manifest.php' );
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/build/atoms-blocks-manifest.php' );
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/build/common-blocks-manifest.php' );
+        wp_register_block_types_from_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/build/components-blocks-manifest.php' );
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/build/sections-blocks-manifest.php' );
 		return;
 	}
 
@@ -51,10 +45,10 @@ function create_blocks_on_init() {
 	 * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
 	 */
 	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
-		wp_register_block_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/manifests/atoms-blocks-manifest.php' );
-		wp_register_block_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/manifests/common-blocks-manifest.php' );
-		wp_register_block_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/manifests/components-blocks-manifest.php' );
-		wp_register_block_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/manifests-/sections-blocks-manifest.php' );
+		wp_register_block_metadata_collection( __DIR__ . '/build/atoms', __DIR__ . '/build/atoms-blocks-manifest.php' );
+		wp_register_block_metadata_collection( __DIR__ . '/build/common', __DIR__ . '/build/common-blocks-manifest.php' );
+        wp_register_block_metadata_collection( __DIR__ . '/build/components', __DIR__ . '/build/components-blocks-manifest.php' );
+		wp_register_block_metadata_collection( __DIR__ . '/build/sections', __DIR__ . '/build/sections-blocks-manifest.php' );
 	}
 	/**
 	 * Registers the block type(s) in the `blocks-manifest.php` file.
@@ -62,29 +56,30 @@ function create_blocks_on_init() {
 	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
 	 */
 
-	$common_manifest_data = require __DIR__ . '/manifests/common-blocks-manifest.php';
+	$common_manifest_data = require __DIR__ . '/build/common-blocks-manifest.php';
 	foreach ( array_keys( $common_manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/common/{$block_type}" );
 	}
 
-	$atoms_manifest_data = require __DIR__ . '/manifests/atoms-blocks-manifest.php';
+	$atoms_manifest_data = require __DIR__ . '/build/atoms-blocks-manifest.php';
 	foreach ( array_keys( $atoms_manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/atoms/{$block_type}" );
 	}
 
-	$sections_manifest_data = require __DIR__ . '/manifests/sections-blocks-manifest.php';
+	$sections_manifest_data = require __DIR__ . '/build/sections-blocks-manifest.php';
 	foreach ( array_keys( $sections_manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/sections/{$block_type}" );
 	}
 
-	$components_manifest_data = require __DIR__ . '/manifests/components-blocks-manifest.php';
+
+	$components_manifest_data = require __DIR__ . '/build/components-blocks-manifest.php';
 	foreach ( array_keys( $components_manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/components/{$block_type}" );
 	}
 }
 add_action( 'init', 'create_blocks_on_init' );
 
-function register_swiper_scripts() {
+function register_external_scripts() {
     wp_register_style(
         'swiper-css',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
@@ -102,7 +97,7 @@ function register_swiper_scripts() {
 
     register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'register_swiper_scripts' );
+add_action( 'init', 'register_external_scripts' );
 
 function register_GSAP_scripts() {
 	wp_register_script(
@@ -169,17 +164,6 @@ add_action( 'init', function() {
 	\patterns\patterns::register_plugin_patterns();
 });
 
-add_action('phpmailer_init', function($phpmailer) {
-    $phpmailer->isSMTP();
-    $phpmailer->Host = 'mailhog';
-    $phpmailer->Port = 1025;
-    $phpmailer->SMTPAutoTLS = false;
-});
-
 add_action('rest_api_init', function() {
 	\api\contact::register_contact_routes();
 });
-
-add_filter('woocommerce_card_needs_payment', '__return_false');
-
-add_theme_support( 'woocommerce' );
