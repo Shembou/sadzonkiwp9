@@ -30,45 +30,45 @@
             <div class="swiper-wrapper"><!-- wp:image {"id":149,"sizeSlug":"large","linkDestination":"none"} -->
                 <figure class="wp-block-image size-large">
                     <img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-1.png') ); ?>"
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-1.webp') ); ?>"
                         alt="" class="wp-image-149" />
                 </figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":95,"sizeSlug":"large","linkDestination":"none"} -->
                 <figure class="wp-block-image size-large"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-2.png') ); ?>"
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-2.webp') ); ?>"
                         alt=""
                         class="wp-image-95" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":47,"sizeSlug":"full","linkDestination":"none"} -->
                 <figure class="wp-block-image size-full"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-3.png') ); ?>"
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-3.webp') ); ?>"
                         alt="" class="wp-image-47" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":95,"sizeSlug":"large","linkDestination":"none"} -->
                 <figure class="wp-block-image size-large"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-4.png') ); ?>"
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-4.webp') ); ?>"
                         alt="" class="wp-image-95" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":69,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
                 <figure class="wp-block-image size-full"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-5.png') ); ?>" alt=""
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-5.webp') ); ?>" alt=""
                         class="wp-image-69" style="object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":69,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
                 <figure class="wp-block-image size-full"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-6.png') ); ?>" alt=""
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-6.webp') ); ?>" alt=""
                         class="wp-image-69" style="object-fit:cover" /></figure>
                 <!-- /wp:image -->
 
                 <!-- wp:image {"id":69,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
                 <figure class="wp-block-image size-full"><img
-                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-7.png') ); ?>" alt=""
+                        src="<?php echo esc_url( get_theme_file_uri( 'assets/images/swiper-image-7.webp') ); ?>" alt=""
                         class="wp-image-69" style="object-fit:cover" /></figure>
                 <!-- /wp:image -->
             </div>
